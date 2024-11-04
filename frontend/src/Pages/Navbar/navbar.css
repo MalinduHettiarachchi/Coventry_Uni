@@ -1,41 +1,37 @@
 /* General styling for navbar */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-  }
-  
-  /* Logo styling */
-  .navbar-logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  .navbar-logo-icon {
-    font-weight: normal;
-    margin-left: 5px;
-  }
-  
-  /* Links styling */
-  .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .navbar-links li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-  }
-  
-  /* Profile icon styling */
-  .navbar-profile-icon {
-    font-size: 1.5em;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo styling */
+.navbar-logo img {
+  height: 45px; /* Adjust the size as needed */
+  width: auto;
+  margin-left: 130px;
+  border-radius: 10px;
+}
+
+/* Links styling */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 50px; /* Adjust spacing between links */
+  margin-right: 80px;
+  font-size: 15px;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Profile image styling */
+.navbar-profile-icon .profile-image {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+}
