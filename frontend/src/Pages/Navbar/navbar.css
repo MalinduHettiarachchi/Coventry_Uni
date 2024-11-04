@@ -6,6 +6,8 @@
   background-color: black;
   color: white;
   font-family: 'Poppins', sans-serif;
+  height: 10vh;
+  border-bottom: 1px solid #ffffff;
 }
 
 /* Logo styling */

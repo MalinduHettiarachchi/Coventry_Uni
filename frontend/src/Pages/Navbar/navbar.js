@@ -11,7 +11,7 @@ function Navbar() {
       </div>
       <ul className="navbar-links">
         <li><a href="#teams">LUXN for Teams</a></li>
-        <li><a href="#custom-card">Custom Card</a></li>
+        <li><a href="/ourteam">Our Team</a></li>
         <li><a href="#review">Review</a></li>
         <li><a href="#ambassadors">Ambassadors</a></li>
         <li><a href="#about">About</a></li>

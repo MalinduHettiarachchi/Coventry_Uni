@@ -1,0 +1,71 @@
+.shrc {
+    display: flex;
+    height: 89.8vh; 
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .leftot, .rightot {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  
+  .leftot {
+    flex: 1;
+    background-color: #000000;
+    color: white;
+    font-size: 60px;
+    font-weight: 500;
+  }
+  
+  .rightot {
+    flex: 1;
+    background-color: #000000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .lregi-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .lregi-form label {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  .lregi-form input {
+    width: 300px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ffffff; /* Default border color */
+    border-radius: 30px;
+    background-color: #000000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    outline: none; /* Removes the default outline */
+    transition: background-color 0.3s; /* Adds smooth transition */
+}
+
+.lregi-form input:focus {
+    border: none; /* Removes border on focus */
+    background-color: #1a1a1a; /* Optional: change background color on focus */
+}
+.submit-button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
