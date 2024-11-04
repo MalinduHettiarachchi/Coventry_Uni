@@ -1,0 +1,41 @@
+/* General styling for navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+  }
+  
+  /* Logo styling */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .navbar-logo-icon {
+    font-weight: normal;
+    margin-left: 5px;
+  }
+  
+  /* Links styling */
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+  }
+  
+  /* Profile icon styling */
+  .navbar-profile-icon {
+    font-size: 1.5em;
+  }
+  
