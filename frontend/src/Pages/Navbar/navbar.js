@@ -10,12 +10,12 @@ function Navbar() {
       <a href='/home'><img src={logoImage} alt="LuxN logo"/></a>
       </div>
       <ul className="navbar-links">
-        <li><a href="#teams">LUXN for Teams</a></li>
-        <li><a href="/ourteam">Our Team</a></li>
-        <li><a href="#review">Review</a></li>
-        <li><a href="#ambassadors">Ambassadors</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li><a href="/ourteam">Join Us</a></li>
+        <li><a href="/review">Review</a></li>
+        <li><a href="/ambassadors">Ambassadors</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
          <li className="navbar-profile-icon">
           <a href="/login">
             <img src={loginImage} alt="Profile" className="profile-image" />

@@ -3,6 +3,7 @@ import Navbar from "../Navbar/navbar"; // Adjust the path if necessary
 import ST1 from "../Home/st1.png";
 import ST2 from "../Home/st2.png";
 import ST3 from "../Home/st3.png";
+import ST4 from "../Home/st4.png";
 import searchIcon from "../Home/sicon.png"; // Adjust path to your icon
 import '../Home/home.css';
 import Partners from '../Partners/partners'
@@ -11,8 +12,8 @@ import Footer from '../Footer/footer'
 const images = [
   ST1,
   ST2,
+  ST4,
   ST3,
-  // Add more image paths as needed
 ];
 
 function Home() {
