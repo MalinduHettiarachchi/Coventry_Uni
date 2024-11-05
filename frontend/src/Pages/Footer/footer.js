@@ -12,7 +12,7 @@ function footer() {
             <span> WhatsApp</span>
             <p>+94 770085670</p>
           </div>
-          <h4>FUELTIX Card</h4>
+          <h4>COVENTRY Uni</h4>
           <ul>
             <li><a href="/buy">Buy Now</a></li>
             <li><a href="/ourteam">Our Team</a></li>
@@ -36,7 +36,7 @@ function footer() {
           <div>
             <i className="fas fa-envelope"></i>
             <span> Mail us</span>
-            <p>fueltixsl@gmail.com</p>
+            <p>coventry@gmail.com</p>
           </div>
           <h4>Social Media</h4>
           <ul className="social-icons">
@@ -69,7 +69,7 @@ function footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2024 FUELTIX | Powered by FUELTIX IT</p>
+        <p>© 2024 COVENTRY | Powered by COVENTRY IT</p>
       </div>
     </div>
   );

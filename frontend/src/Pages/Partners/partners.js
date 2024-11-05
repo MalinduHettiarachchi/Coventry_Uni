@@ -19,7 +19,7 @@ function Partners() {
 
   return (
     <div className="partners-container">
-      <h2>10,000+ professionals and corporates have connected with FUELTRIX.</h2>
+      <h2>10,000+ professionals and corporates have connected with COVENTRY.</h2>
       <div className="partners-logos">
         {/* Render the partners list twice to create an infinite scroll effect */}
         {partners.map((partner, index) => (
