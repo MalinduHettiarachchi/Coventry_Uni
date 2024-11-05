@@ -6,6 +6,7 @@ import ST3 from "../Home/st3.png";
 import searchIcon from "../Home/sicon.png"; // Adjust path to your icon
 import '../Home/home.css';
 import Partners from '../Partners/partners'
+import Footer from '../Footer/footer'
 
 const images = [
   ST1,
@@ -81,7 +82,7 @@ function Home() {
         </div>
       </div>
       <Partners/>
-      
+      <Footer/>
     </div>
   );
 }
