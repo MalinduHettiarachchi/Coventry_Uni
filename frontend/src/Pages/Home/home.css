@@ -1,0 +1,125 @@
+/* Container for the entire page, setting it to a minimum of 80vh */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: black;
+  padding: 0;
+}
+
+/* Styles for the slideshow container */
+.slideshow-container {
+  position: relative; /* Make the container relative */
+  text-align: center; /* Center text horizontally */
+}
+
+.slideshow-image {
+  width: 100%; /* Adjust width as necessary */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.slideshow-text {
+  position: absolute; /* Position text absolutely */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset to truly center */
+  color: white; /* Text color */
+  font-size: 80px; /* Adjust font size as needed */
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap; /* Prevent wrapping to a new line */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Optional: Add shadow for better readability */
+}
+.search-bar:focus {
+  border: none; /* Removes border on focus */
+  background-color: #1a1a1a; /* Optional: change background color on focus */
+}
+
+/* Centering container for the search bar and icon */
+.search-bar-container {
+  position: absolute;
+  top: 70%; /* Adjust as needed */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px; /* Width of the search bar */
+}
+
+/* Styling the search bar */
+.search-bar {
+  width: 100%; /* Full width of the container */
+  padding: 10px 40px 10px 15px; /* Padding adjusted for icon space */
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0); /* Transparent */
+  color: white;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Placeholder styling */
+.search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Styling the search icon inside the search bar */
+.search-icon {
+  position: absolute;
+  right: -30px; /* Adjust this to position the icon correctly */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Icon size */
+  height: 20px;
+  pointer-events: none; /* Clicks go through the icon */
+}
+
+.features-section {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 70px;
+  color: #ffffff; /* Adjust color as needed */
+  font-family: 'Poppins', sans-serif;
+  background-color: #00000094;
+}
+
+.features-section h2 {
+  font-size: 34px;
+  margin-bottom: 70px;
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background-color: #3a3a3a; /* Background color for cards */
+  padding: 20px;
+  width: 220px;
+  height: 260px;
+  border-radius: 25px;
+  text-align: center;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.842);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+.feature-card1 {
+  background-color: #3a3a3a; /* Background color for cards */
+  padding: 20px;
+  width: 220px;
+  height: 220px;
+  border-radius: 25px;
+  text-align: center;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.842);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.feature-icon {
+  font-size: 30px;
+}
