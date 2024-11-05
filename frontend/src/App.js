@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home/home';
 import Login from './Pages/Login/login';
+import Lregi from './Pages/LRegi/lregi'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/ourteam" element={<Lregi />} />
         </Routes>
       </div>
     </Router>
