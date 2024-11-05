@@ -6,6 +6,7 @@ import Home from './Pages/Home/home';
 import Login from './Pages/Login/login';
 import Lregi from './Pages/LRegi/lregi';
 import Contact from './Pages/Contact/contact';
+import About from './Pages/About/about';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/ourteam" element={<Lregi />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </Router>
