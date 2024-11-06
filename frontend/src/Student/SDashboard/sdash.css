@@ -1,0 +1,49 @@
+.swebcontainer {
+    display: flex;
+    height: 89.9vh;
+}
+
+.swebright {
+    width: 85%;
+    background-color: #111;
+    color: white;
+    padding: 20px;
+}
+
+.swebleft {
+    width: 15%;
+    background-color: #000000;
+    color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: flex-start; /* Aligns items from the top */
+    align-items: center;
+}
+
+.swebleft-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    width: 190px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    display: flex;
+    align-items: center; /* Aligns the icon and text */
+    font-family: 'Poppins', sans-serif;
+}
+
+.swebleft-button-icon {
+    width: 20px; /* Set the width for the image icon */
+    height: 20px; /* Set the height for the image icon */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+.swebleft-button:hover {
+    background-color: #111;
+}

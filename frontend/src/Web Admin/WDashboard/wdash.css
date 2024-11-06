@@ -1,0 +1,194 @@
+.webcontainer {
+    display: flex;
+    height: 89.9vh;
+}
+
+.webright {
+    width: 85%;
+    background-color: #111;
+    color: white;
+    padding: 20px;
+}
+
+.webleft {
+    width: 15%;
+    background-color: #000000;
+    color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: flex-start; /* Aligns items from the top */
+    align-items: center;
+}
+
+.webleft-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    width: 190px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    display: flex;
+    align-items: center; /* Aligns the icon and text */
+    font-family: 'Poppins', sans-serif;
+}
+
+.webleft-button-icon {
+    width: 20px; /* Set the width for the image icon */
+    height: 20px; /* Set the height for the image icon */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+.webleft-button:hover {
+    background-color: #111;
+}
+.rcard-container {
+    display: flex;
+    justify-content: center; /* Centers cards if you don't want to use space-around */
+    gap: 20px; /* Adjust this value to control the space between cards */
+}
+  
+  .rcard {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .rcard h3 {
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 400;
+  }
+  .l1{
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 400;
+  }
+  
+  .buy-button {
+    background-color: #fff;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .buy-button:hover {
+    background-color: #ddd;
+  }
+
+  .addcourse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 25px;
+    background-color: #111;
+    color: white;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .plus-icon:hover {
+    background-color: #FFF;
+  }
+  
+  .plus-icon {
+    width: 30px; /* Set icon size */
+    height: auto;
+    margin-left: 8px; /* Space between text and icon */
+    border-radius: 50%;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .modal-content input,
+  .modal-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+ 
+  
+  .modal-content button:hover {
+    background-color: #ddd;
+  }
+  
+  .adsubmit{
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  .adbutton{
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }

@@ -1,0 +1,53 @@
+/* General styling for navbar */
+.wnavbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the content horizontally */
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    height: 10vh;
+    border-bottom: 1px solid #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0 20px; /* Add some padding to prevent items from touching the edges */
+}
+
+/* Logo styling */
+.wnavbar-logo img {
+    height: 45px;
+    width: auto;
+    border-radius: 10px;
+    margin-right: 50px; /* Adjust spacing between the logo and the items */
+}
+
+/* Links styling */
+.wnavbar-links {
+    list-style: none;
+    display: flex;
+    gap: 50px; /* Adjust spacing between links */
+    font-size: 15px;
+    align-items: center; /* Ensure that items align in the center */
+}
+
+.wnavbar-links p{
+    font-size: 25px;
+    font-weight: 600;
+}
+/* Profile image styling */
+.wnavbar-profile-icon {
+    display: flex;
+    align-items: center; /* Vertically center the image */
+    justify-content: center; /* Center the image horizontally */
+}
+
+.wnavbar-profile-icon .wprofile-image {
+    width: 30px; /* Adjust size as needed */
+    height: 30px;
+    border-radius: 50%; /* Optional: makes the image circular */
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+    margin-left: 10px; /* Optional: gives space between the text and image */
+}
+
+
