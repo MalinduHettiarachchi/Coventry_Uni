@@ -5,6 +5,7 @@ const cors = require("cors");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 const path = require("path");
+require("dotenv").config(); // To load environment variables
 
 const app = express();
 app.use(cors());
@@ -21,7 +22,7 @@ mongoose.connect("mongodb+srv://admin:XB2MJZMcaYi75Dey@cluster0.ecwn6.mongodb.ne
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploads/");  // Ensure "uploads/" folder exists
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // Appending extension
@@ -30,21 +31,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Define user schema
+// Define user schema with a custom collection name "lectuerreq"
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   contactNumber: String,
   resume: String,
-});
+}, { collection: "lectuerreq" });  // Specify the collection name as "lectuerreq"
 
+// Create a model for the "lectuerreq" collection
 const User = mongoose.model("User", userSchema);
 
 // Create a POST route to save user data and send email
 app.post("/api/users", upload.single("resume"), async (req, res) => {
   const { name, email, contactNumber } = req.body;
 
-  // Save user to the database
+  // Save user to the "lectuerreq" collection
   const newUser = new User({ name, email, contactNumber, resume: req.file.path });
   try {
     await newUser.save();
@@ -54,13 +56,13 @@ app.post("/api/users", upload.single("resume"), async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail", // or your email provider
       auth: {
-        user: "mhssc20@gmail.com", // Your email address
-        pass: "hnhn hxlb cevq gtqk", // Your email password or app password
+        user:" mhssc20@gmail.com", // Your email address from .env
+        pass: "hnhn hxlb cevq gtqk", // Your email password or app password from .env
       },
     });
 
     const mailOptions = {
-      from: "your-email@gmail.com",
+      from: "mhssc20@gmail.com",  // Use the same email for sending and auth
       to: email,
       subject: "Registration Confirmation",
       text: `Hello ${name},\n\nThank you for registering!\n\nBest regards,\nCoventry Team`,
