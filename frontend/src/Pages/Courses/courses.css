@@ -98,8 +98,8 @@
 }
 
 .searchbody p{
-    margin-top: -10px;
-    font-size: 32px;
+    margin-top: -20px;
+    font-size: 30px;
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -125,7 +125,7 @@
     transition: background-color 0.3s ease;
     font-family: 'Poppins', sans-serif;
     border: 1px solid #fff;
-    height: 80px;
+    height: 55px;
   }
   
   .left-button:hover {
@@ -134,10 +134,10 @@
     color: #fff;
   }
   
-
 .searchbody-right {
     width: 80%;
     background-color: #111;
-    color: #000;
+    color: #ffffff;
     padding: 20px;
+
 }
