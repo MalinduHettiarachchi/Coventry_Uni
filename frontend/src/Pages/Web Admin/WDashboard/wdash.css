@@ -47,53 +47,6 @@
 .webleft-button:hover {
     background-color: #111;
 }
-.rcard-container {
-    display: flex;
-    justify-content: center; /* Centers cards if you don't want to use space-around */
-    gap: 20px; /* Adjust this value to control the space between cards */
-}
-  
-  .rcard {
-    background-color: #333;
-    color: #fff;
-    width: 200px;
-    height: 300px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    margin-top: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .rcard h3 {
-    font-size: 1.1em;
-    text-align: center;
-    margin-top: 5px;
-    font-weight: 400;
-  }
-  .l1{
-    font-size: 1.1em;
-    text-align: center;
-    margin-top: 5px;
-    font-weight: 400;
-  }
-  
-  .buy-button {
-    background-color: #fff;
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .buy-button:hover {
-    background-color: #ddd;
-  }
 
   .addcourse {
     display: flex;
@@ -192,3 +145,50 @@
     font-size: 14px;
     border-radius: 4px;
   }
+
+  .request-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* Spacing between cards */
+    padding: 10px;   
+  }
+  
+  .request-card {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 15px;
+    border-radius:15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .request-card p {
+    margin: 5px 0;
+  }
+  
+  .request-buttons {
+    display: flex;
+    justify-content:space-around;
+    margin-top: 20px;
+    margin-bottom: -5px;
+  }
+  
+  .accept-button,
+  .reject-button {
+    padding: 8px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .accept-button ,.reject-button{
+    background-color: #111;
+    color: #fff;
+
+  }
+  
+  .accept-button:hover,.reject-button:hover {
+    background-color: #000000;
+  }
+  
+   

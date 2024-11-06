@@ -1,7 +1,7 @@
 import React from 'react'
-import '../WNavbar/wnavbar.css'
-import loginImage from '../WNavbar/login.png';
-import logoImage from '../WNavbar/logotw.png';
+import './wnavbar.css'
+import loginImage from './login.png';
+import logoImage from './logotw.png';
 
 
 function wnavbar() {

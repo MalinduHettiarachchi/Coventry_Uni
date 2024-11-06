@@ -8,9 +8,9 @@ import Lregi from './Pages/LRegi/lregi'
 import Contact from './Pages/Contact/contact'
 import About from './Pages/About/about'
 import Courses from './Pages/Courses/courses'
-import Wdash from './Web Admin/WDashboard/wdash'
-import Ldash from './Lecturer/LDashboard/ldash'
-import Sdash from './Student/SDashboard/sdash'
+import Ldash from './Pages/Lecturer/LDashboard/ldash'
+import Sdash from './Pages/Student/SDashboard/sdash'
+import WDash from './Pages/Web Admin/WDashboard/wdash';
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/ambassadors" element={<Wdash />} />
           <Route path="/le" element={<Ldash />} />
           <Route path="/st" element={<Sdash />} />
+          <Route path="/ambassadors" element={<WDash />} />
         </Routes>
       </div>
     </Router>
