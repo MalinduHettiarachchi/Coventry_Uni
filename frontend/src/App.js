@@ -7,6 +7,7 @@ import Login from './Pages/Login/login';
 import Lregi from './Pages/LRegi/lregi';
 import Contact from './Pages/Contact/contact';
 import About from './Pages/About/about';
+import Courses from './Pages/Courses/courses'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/ourteam" element={<Lregi />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/courses" element={<Courses />} />
         </Routes>
       </div>
     </Router>
