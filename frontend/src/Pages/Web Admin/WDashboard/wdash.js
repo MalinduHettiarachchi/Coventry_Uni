@@ -54,17 +54,23 @@ function WDash() {
         contactNumber: request.contactNumber,
         password: password,
       };
-
-      const response = await axios.post(
-        "http://localhost:5000/api/lecturer",
-        lecturerData
-      );
-      console.log(response.data);
-      alert("Lecturer added successfully!");
+  
+      // Add lecturer to the database
+      const response = await axios.post("http://localhost:5000/api/lecturer", lecturerData);
+  
+      // Send email with lecturer's username and generated password
+      await axios.post("http://localhost:5000/api/send-lecturer-email", {
+        name: request.name,
+        email: request.email,
+        password: password,
+      });
+  
+      alert("Lecturer added and email sent successfully!");
     } catch (error) {
-      console.error("Error adding lecturer:", error);
+      console.error("Error adding lecturer or sending email:", error);
     }
   };
+  
 
   const handleCourseChange = (e) => {
     setCourseData({ ...courseData, [e.target.name]: e.target.value });

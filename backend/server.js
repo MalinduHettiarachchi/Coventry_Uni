@@ -329,6 +329,45 @@ app.post("/api/register-student", async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////////////////////////////////////
+// Route to send an email to the lecturer with their username and password
+app.post("/api/send-lecturer-email", async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    // Configure the Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER, // Store your email in an environment variable
+        pass: process.env.EMAIL_PASS, // Store your app-specific password in an environment variable
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your Lecturer Account Details",
+      text: `Hello ${name},\n\nYour lecturer account has been created.\n\nUsername: ${email}\nPassword: ${password}\n\nBest regards,\nCoventry Team`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to send email" });
+  }
+});
+
+///////////////////////////////////////////////////
+
 
 
 
