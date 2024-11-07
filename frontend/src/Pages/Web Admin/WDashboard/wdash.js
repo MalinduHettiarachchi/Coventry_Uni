@@ -157,9 +157,6 @@ function WDash() {
                   <div key={course._id} className="ccourse-card">
                     <p><strong>Course Name:</strong> {course.name}</p>
                     <p><strong>Department:</strong> {course.department}</p>
-                    <p><strong>Duration:</strong> {course.duration}</p>
-                    <p><strong>Fees:</strong> ${course.fees}</p>
-                    <p><strong>Description:</strong> {course.description}</p>
                   </div>
                 ))}
               </div>
