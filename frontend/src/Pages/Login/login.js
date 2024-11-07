@@ -20,7 +20,7 @@ function Login() {
     // Check for special case: Coventry login credentials
     if (email === "coventry@gmail.com" && password === "cove123") {
       setIsAuthenticated(true);
-      navigate("/ambassadors"); // Navigate to the /ambassadors route if credentials match
+      navigate("/webdah"); // Navigate to the /ambassadors route if credentials match
       return;
     }
 
@@ -89,18 +89,7 @@ function Login() {
 
       {/* Left Side Image and Text */}
       <div className="login-left">
-        <div className="login-promo-text">
-          <h3>
-            Future of <span className="networking">Networking</span>
-          </h3>
-          <h1>LuxN</h1>
-        </div>
-        <div className="login-image">
-          <img
-            src="path-to-your-image/left-image.png"
-            alt="Phone and LuxN card"
-          />
-        </div>
+        
       </div>
 
       {/* Right Side Form */}

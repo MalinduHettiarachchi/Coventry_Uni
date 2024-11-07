@@ -12,9 +12,6 @@ function Navbar() {
       <ul className="navbar-links">
         <li><a href="/courses">Courses</a></li>
         <li><a href="/ourteam">Join Us</a></li>
-        <li><a href="/ambassadors">Ambassadors</a></li>
-        <li><a href="/le">Le</a></li>
-        <li><a href="/st">St</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
          <li className="navbar-profile-icon">
