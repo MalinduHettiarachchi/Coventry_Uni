@@ -265,6 +265,50 @@ app.get('/api/courses/:courseId', async (req, res) => {
 });
 
 
+/////////////////////////////////////////////////////////////////////
+app.post("/api/register-student", async (req, res) => {
+  const { name, email, contactNumber } = req.body;
+
+  // Generate password: first two letters of name + contact number, prefixed with 'S'
+  const generatedPassword = `S${name.slice(0, 2)}${contactNumber}`;
+
+  try {
+    // Set up nodemailer for sending email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "mhssc20@gmail.com",
+        pass: "hnhn hxlb cevq gtqk",
+      },
+    });
+
+    const mailOptions = {
+      from: "mhssc20@gmail.com",
+      to: email,
+      subject: "Student Registration Confirmation",
+      text: `Hello ${name},\n\nYour registration is successful!\nYour login password is: ${generatedPassword}\n\nBest regards,\nCoventry Team`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(201).json({ message: "Student registered and email sent successfully" });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to register student" });
+  }
+});
+
+
+
+
+
+
+
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
