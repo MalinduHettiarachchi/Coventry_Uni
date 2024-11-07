@@ -1,6 +1,6 @@
 .webcontainer {
   display: flex;
-  height: 89.9vh;
+  height: auto;
 }
 
 .webright {

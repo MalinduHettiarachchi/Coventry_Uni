@@ -265,6 +265,149 @@ app.get('/api/courses/:courseId', async (req, res) => {
 });
 
 
+/////////////////////////////////////////////////////////////////////////////////
+
+// Define the Student schema
+const studentSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  contactNumber: String,
+  password: String,
+  course: String,
+  createdAt: { type: Date, default: Date.now },
+});
+
+// Create a model for the "students" collection
+const Student = mongoose.model("Student", studentSchema);
+
+// Route to register a student
+app.post("/api/register-student", async (req, res) => {
+  const { name, email, contactNumber, course } = req.body;
+
+  // Generate password: first two letters of name + contact number, prefixed with 'S'
+  const generatedPassword = `S${name.slice(0, 2)}${contactNumber}`;
+
+  try {
+    // Create a new student entry
+    const newStudent = new Student({
+      name,
+      email,
+      contactNumber,
+      password: generatedPassword,
+      course,  // Store the selected course
+    });
+
+    await newStudent.save(); // Save student data to the "students" collection
+
+    // Set up Nodemailer for email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "mhssc20@gmail.com",
+        pass: "hnhn hxlb cevq gtqk",
+      },
+    });
+
+    const mailOptions = {
+      from: "mhssc20@gmail.com",
+      to: email,
+      subject: "Student Registration Confirmation",
+      text: `Hello ${name},\n\nYour registration for the course "${course}" is successful!\nYour login password is: ${generatedPassword}\n\nBest regards,\nCoventry Team`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(201).json({ message: "Student registered and email sent successfully" });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to register student" });
+  }
+});
+
+///////////////////////////////////////////////////////////////////////////////////
+// Route to send an email to the lecturer with their username and password
+app.post("/api/send-lecturer-email", async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    // Configure the Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER, // Store your email in an environment variable
+        pass: process.env.EMAIL_PASS, // Store your app-specific password in an environment variable
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your Lecturer Account Details",
+      text: `Hello ${name},\n\nYour lecturer account has been created.\n\nUsername: ${email}\nPassword: ${password}\n\nBest regards,\nCoventry Team`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to send email" });
+  }
+});
+
+///////////////////////////////////////////////////
+
+app.post('/api/lecturers', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // Add your lecturer authentication logic here
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
+    }
+
+    const lecturer = await Lecturer.findOne({ email: email });
+    if (!lecturer || lecturer.password !== password) {
+      return res.status(400).json({ success: false, message: "Invalid password" });
+    }
+
+    res.json({ success: true, message: "Authenticated" });
+  } catch (error) {
+    console.error("Error during lecturer login:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+app.post('/api/students', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
+    }
+
+    const student = await Student.findOne({ email: email });
+    if (!student || student.password !== password) {
+      return res.status(400).json({ success: false, message: "Invalid password" });
+    }
+
+    res.json({ success: true, message: "Authenticated" });
+  } catch (error) {
+    console.error("Error during student login:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

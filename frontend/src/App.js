@@ -29,7 +29,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/le" element={<Ldash />} />
           <Route path="/st" element={<Sdash />} />
-          <Route path="/ambassadors" element={<WDash />} />
+          <Route path="/webdah" element={<WDash />} />
           <Route path="/course/:courseId" element={<CourseDetails />} />
           <Route path="/student-registration" element={<Studentregi />} />
         </Routes>

@@ -17,7 +17,7 @@
 .navbar-logo img {
   height: 45px; /* Adjust the size as needed */
   width: auto;
-  margin-left: 130px;
+  margin-left: 320px;
   border-radius: 10px;
 }
 
@@ -26,7 +26,7 @@
   list-style: none;
   display: flex;
   gap: 50px; /* Adjust spacing between links */
-  margin-right: 80px;
+  margin-right: 120px;
   font-size: 15px;
 }
 
