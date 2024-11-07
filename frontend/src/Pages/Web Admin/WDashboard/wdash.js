@@ -106,16 +106,16 @@ function WDash() {
                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                   <h2>Add New Course</h2>
                   <form>
-                    <label>Course Name:</label>
+                    <label>Course Name</label>
                     <input type="text" placeholder="Enter course name" />
-                    <label>Department:</label>
+                    <label>Department</label>
                     <input type="text" placeholder="Enter department" />
-                    <label>Course Duration:</label>
+                    <label>Course Duration</label>
                     <input type="text" placeholder="Enter course duration" />
-                    <label>Course Fees:</label>
+                    <label>Course Fees</label>
                     <input type="number" placeholder="Enter course fees" />
-                    <label>Course Description:</label>
-                    <input type="text" placeholder="Enter course description" />
+                    <label >Course Description</label>
+                    <textarea placeholder="Enter course description" className="coursed"></textarea>
                     <button type="submit" className="adsubmit">Submit</button>
                   </form>
                 </div>
