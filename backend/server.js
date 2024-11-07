@@ -368,32 +368,44 @@ app.post("/api/send-lecturer-email", async (req, res) => {
 
 ///////////////////////////////////////////////////
 
-// Route to verify lecturer credentials
-app.post("/api/lecturers", async (req, res) => {
-  const { email, password } = req.body;
-
+app.post('/api/lecturers', async (req, res) => {
   try {
-    // Find lecturer by email and check if the password matches
-    const lecturer = await Lecturer.findOne({ email });
-
-    if (!lecturer) {
-      return res.status(400).json({ success: false, message: "Lecturer not found" });
+    const { email, password } = req.body;
+    // Add your lecturer authentication logic here
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
     }
 
-    // Check if the password matches
-    if (lecturer.password === password) {
-      res.status(200).json({ success: true, message: "Login successful" });
-    } else {
-      res.status(400).json({ success: false, message: "Invalid password" });
+    const lecturer = await Lecturer.findOne({ email: email });
+    if (!lecturer || lecturer.password !== password) {
+      return res.status(400).json({ success: false, message: "Invalid password" });
     }
+
+    res.json({ success: true, message: "Authenticated" });
   } catch (error) {
-    console.error(error);
+    console.error("Error during lecturer login:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
 
+app.post('/api/students', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
+    }
 
+    const student = await Student.findOne({ email: email });
+    if (!student || student.password !== password) {
+      return res.status(400).json({ success: false, message: "Invalid password" });
+    }
 
+    res.json({ success: true, message: "Authenticated" });
+  } catch (error) {
+    console.error("Error during student login:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
 
 
   const PORT = process.env.PORT || 5000;
