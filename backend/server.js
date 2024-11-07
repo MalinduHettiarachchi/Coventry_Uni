@@ -147,6 +147,122 @@ app.get("/api/courses", async (req, res) => {
   }
 });
 
+app.get("/api/courses", async (req, res) => {
+  try {
+    const { department } = req.query; // Extract department query
+    const query = department ? { department } : {}; // If department is provided, filter by department
+    const courses = await Course.find(query).sort({ createdAt: -1 });
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch courses" });
+  }
+});
+
+app.post("/api/courses", async (req, res) => {
+  try {
+    const { name, department, duration, fees, description } = req.body;
+    const newCourse = new Course({
+      name,
+      department,
+      duration,
+      fees,
+      description,
+    });
+
+    await newCourse.save();
+    res.status(201).json({ message: "Course added successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to add course" });
+  }
+});
+
+app.get("/api/courses", async (req, res) => {
+  try {
+    const { department } = req.query;  // Get department query from URL
+    const query = department ? { department } : {};  // Filter by department if provided
+    const courses = await Course.find(query).sort({ createdAt: -1 });
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch courses" });
+  }
+});
+
+// Course Schema (make sure this exists)
+
+
+// Route to fetch courses by department
+app.get("/api/courses", async (req, res) => {
+  try {
+    const { department } = req.query; // Extract department query
+    const query = department ? { department } : {}; // If department is provided, filter by department
+    const courses = await Course.find(query).sort({ createdAt: -1 });
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch courses" });
+  }
+});
+
+// Route to add courses (for testing purposes)
+app.post("/api/courses", async (req, res) => {
+  try {
+    const { name, department, duration, fees, description } = req.body;
+    const newCourse = new Course({
+      name,
+      department,
+      duration,
+      fees,
+      description,
+    });
+
+    await newCourse.save();
+    res.status(201).json({ message: "Course added successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to add course" });
+  }
+});
+
+app.get("/api/courses", async (req, res) => {
+  try {
+    const { department } = req.query;  // Get department query from URL
+    const query = department ? { department } : {};  // Filter by department if provided
+    const courses = await Course.find(query).sort({ createdAt: -1 });
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch courses" });
+  }
+});
+
+// Route to add a new course
+app.post("/api/courses", async (req, res) => {
+  try {
+    const { name, department, duration, fees, description } = req.body;
+    const newCourse = new Course({
+      name,
+      department,
+      duration,
+      fees,
+      description,
+    });
+
+    await newCourse.save();
+    res.status(201).json({ message: "Course added successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to add course" });
+  }
+});
+
+app.get('/api/courses/:courseId', async (req, res) => {
+  const { courseId } = req.params;
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 
 
   const PORT = process.env.PORT || 5000;
