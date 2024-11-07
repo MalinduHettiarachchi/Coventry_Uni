@@ -1,128 +1,155 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const multer = require("multer");
-const nodemailer = require("nodemailer");
-const path = require("path");
-require("dotenv").config();
+  const express = require("express");
+  const mongoose = require("mongoose");
+  const cors = require("cors");
+  const bodyParser = require("body-parser");
+  const multer = require("multer");
+  const nodemailer = require("nodemailer");
+  const path = require("path");
+  require("dotenv").config();
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+  const app = express();
+  app.use(cors());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
-// Connect to MongoDB (Use your correct MongoDB URI)
-mongoose.connect("mongodb+srv://admin:XB2MJZMcaYi75Dey@cluster0.ecwn6.mongodb.net/", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+  // Connect to MongoDB (Use your correct MongoDB URI)
+  mongoose.connect("mongodb+srv://admin:XB2MJZMcaYi75Dey@cluster0.ecwn6.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() => console.log("MongoDB connected"))
+    .catch(err => console.log(err));
 
-// Set up multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");  // Ensure "uploads/" folder exists
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
+  // Set up multer for file uploads
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "uploads/");  // Ensure "uploads/" folder exists
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
 
-const upload = multer({ storage: storage });
+  const upload = multer({ storage: storage });
 
-// Define user schema with timestamps to automatically track createdAt
-const userSchema = new mongoose.Schema({
+  // Define user schema with timestamps to automatically track createdAt
+  const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    contactNumber: String,
+    resume: String,
+  }, { collection: "lectuerreq", timestamps: true }); // timestamps adds createdAt
+
+  // Create a model for the "lectuerreq" collection
+  const User = mongoose.model("User", userSchema);
+
+  // Route to fetch lecturer requests
+  app.get("/api/lecturerreq", async (req, res) => {
+    try {
+      const lecturerRequests = await User.find().sort({ createdAt: -1 });
+      res.status(200).json(lecturerRequests);
+    } catch (err) {
+      res.status(500).json({ error: "Failed to fetch lecturer requests" });
+    }
+  });
+
+  // Route to save user data and send email
+  app.post("/api/users", upload.single("resume"), async (req, res) => {
+    const { name, email, contactNumber } = req.body;
+    const newUser = new User({ name, email, contactNumber, resume: req.file.path });
+
+    try {
+      await newUser.save();
+      res.status(201).json({ message: "User registered successfully" });
+
+      // Email setup
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "mhssc20@gmail.com",
+          pass: "hnhn hxlb cevq gtqk",
+        },
+      });
+
+      const mailOptions = {
+        from: "mhssc20@gmail.com",  // Use environment variable for sender email
+        to: email,
+        subject: "Registration Confirmation",
+        text: `Hello ${name},\n\nThank you for registering!\n\nBest regards,\nCoventry Team`,
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to register user" });
+    }
+  });
+
+  // Lecturer Schema for second part of your request (if needed)
+  const lecturerSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    contactNumber: String,
+    password: String,
+    createdAt: { type: Date, default: Date.now },
+  });
+
+  const Lecturer = mongoose.model('Lecturer', lecturerSchema);
+
+  // POST route for adding a new lecturer
+  app.post('/api/lecturer', async (req, res) => {
+    try {
+      const { name, email, contactNumber } = req.body;
+      
+      // Generate password: First two letters of name + contact number, prefixed with 'L'
+      const generatedPassword = `L${name.slice(0, 2)}${contactNumber}`;
+      
+      // Create a new lecturer entry
+      const newLecturer = new Lecturer({
+        name,
+        email,
+        contactNumber,
+        password: generatedPassword,
+      });
+      
+      await newLecturer.save();  // Save to database
+
+      res.status(201).send('Lecturer added successfully');
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Course Schema (if it does not exist yet)
+const courseSchema = new mongoose.Schema({
   name: String,
-  email: String,
-  contactNumber: String,
-  resume: String,
-}, { collection: "lectuerreq", timestamps: true }); // timestamps adds createdAt
-
-// Create a model for the "lectuerreq" collection
-const User = mongoose.model("User", userSchema);
-
-// Route to fetch lecturer requests
-app.get("/api/lecturerreq", async (req, res) => {
-  try {
-    const lecturerRequests = await User.find().sort({ createdAt: -1 });
-    res.status(200).json(lecturerRequests);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch lecturer requests" });
-  }
-});
-
-// Route to save user data and send email
-app.post("/api/users", upload.single("resume"), async (req, res) => {
-  const { name, email, contactNumber } = req.body;
-  const newUser = new User({ name, email, contactNumber, resume: req.file.path });
-
-  try {
-    await newUser.save();
-    res.status(201).json({ message: "User registered successfully" });
-
-    // Email setup
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "mhssc20@gmail.com",
-        pass: "hnhn hxlb cevq gtqk",
-      },
-    });
-
-    const mailOptions = {
-      from: "mhssc20@gmail.com",  // Use environment variable for sender email
-      to: email,
-      subject: "Registration Confirmation",
-      text: `Hello ${name},\n\nThank you for registering!\n\nBest regards,\nCoventry Team`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to register user" });
-  }
-});
-
-// Lecturer Schema for second part of your request (if needed)
-const lecturerSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  contactNumber: String,
-  password: String,
+  department: String,
+  duration: String,
+  fees: Number,
+  description: String,
   createdAt: { type: Date, default: Date.now },
 });
 
-const Lecturer = mongoose.model('Lecturer', lecturerSchema);
+// Create a model for the "courses" collection
+const Course = mongoose.model('Course', courseSchema);
 
-// POST route for adding a new lecturer
-app.post('/api/lecturer', async (req, res) => {
+// Route to fetch all courses
+app.get("/api/courses", async (req, res) => {
   try {
-    const { name, email, contactNumber } = req.body;
-    
-    // Generate password: First two letters of name + contact number, prefixed with 'L'
-    const generatedPassword = `L${name.slice(0, 2)}${contactNumber}`;
-    
-    // Create a new lecturer entry
-    const newLecturer = new Lecturer({
-      name,
-      email,
-      contactNumber,
-      password: generatedPassword,
-    });
-    
-    await newLecturer.save();  // Save to database
-
-    res.status(201).send('Lecturer added successfully');
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+    const courses = await Course.find().sort({ createdAt: -1 });
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch courses" });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+

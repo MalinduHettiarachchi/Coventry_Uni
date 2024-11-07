@@ -141,3 +141,12 @@
     padding: 20px;
 
 }
+.course-list p{
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: white;
+}
+.course-list strong{
+    font-weight: 500;
+}

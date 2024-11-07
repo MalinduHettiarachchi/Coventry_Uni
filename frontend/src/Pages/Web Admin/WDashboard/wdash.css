@@ -1,197 +1,149 @@
 .webcontainer {
-    display: flex;
-    height: 89.9vh;
+  display: flex;
+  height: 89.9vh;
 }
 
 .webright {
-    width: 85%;
-    background-color: #111;
-    color: white;
-    padding: 20px;
+  width: 85%;
+  background-color: #111;
+  color: white;
+  padding: 20px;
 }
 
 .webleft {
-    width: 15%;
-    background-color: #000000;
-    color: black;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    justify-content: flex-start; /* Aligns items from the top */
-    align-items: center;
+  width: 15%;
+  background-color: #000000;
+  color: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .webleft-button {
-    background-color: #000000;
-    color: white;
-    padding: 10px;
-    width: 190px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: left;
-    display: flex;
-    align-items: center; /* Aligns the icon and text */
-    font-family: 'Poppins', sans-serif;
+  background-color: #000000;
+  color: white;
+  padding: 10px;
+  width: 190px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .webleft-button-icon {
-    width: 20px; /* Set the width for the image icon */
-    height: 20px; /* Set the height for the image icon */
-    margin-right: 10px; /* Space between the image and text */
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .webleft-button:hover {
-    background-color: #111;
+  background-color: #111;
 }
 
-  .addcourse {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    height: 50px;
-    font-size: 30px;
-    border-radius: 25px;
-    background-color: #111;
-    color: white;
-    border: none;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .plus-icon:hover {
-    background-color: #FFF;
-  }
-  
-  .plus-icon {
-    width: 30px; /* Set icon size */
-    height: auto;
-    margin-left: 8px; /* Space between text and icon */
-    border-radius: 50%;
-  }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .modal-content {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 500px;
-    position: relative;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .modal-content label {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .modal-content input,
-  .modal-content textarea {
-    width: 95%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
- 
-  
-  .modal-content button:hover {
-    background-color: #ddd;
-  }
-  
-  .adsubmit{
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-  }
+.request-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 10px;   
+}
 
-  .adbutton{
-    margin-top: 15px;
-    margin-left: 10px;
-    padding: 10px;
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-  }
+.request-card {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-  .request-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; /* Spacing between cards */
-    padding: 10px;   
-  }
-  
-  .request-card {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 15px;
-    border-radius:15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .request-card p {
-    margin: 5px 0;
-  }
-  
-  .request-buttons {
-    display: flex;
-    justify-content:space-around;
-    margin-top: 20px;
-    margin-bottom: -5px;
-  }
-  
-  .accept-button,
-  .reject-button {
-    padding: 8px 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-  }
-  
-  .accept-button ,.reject-button{
-    background-color: #111;
-    color: #fff;
+.request-card p {
+  margin: 5px 0;
+}
 
-  }
-  
-  .accept-button:hover,.reject-button:hover {
-    background-color: #000000;
-  }
-  
-   
+.request-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: -5px;
+}
+
+.accept-button,
+.reject-button {
+  padding: 8px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  background-color: #111;
+  color: #fff;
+}
+
+.accept-button:hover,
+.reject-button:hover {
+  background-color: #000000;
+}
+
+.course-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.course-form label {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.course-form input,.course-form select,
+.course-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.course-form button {
+  background-color: #111;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.course-form button:hover {
+  background-color: #000000;
+}
+
+.ccourses-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 10px;   
+}
+
+.ccourse-card {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ccourse-card p {
+  margin: 5px 0;
+}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../Courses/courses.css';
 import Navbar from '../Navbar/navbar';
 import Footer from '../Footer/footer';
@@ -7,13 +8,30 @@ function Courses() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [hoveredButton, setHoveredButton] = useState('');
+  const [courses, setCourses] = useState([]);
+
+  // Fetch courses when selectedCategory changes
+  useEffect(() => {
+    if (selectedCategory) {
+      fetchCourses(selectedCategory);
+    }
+  }, [selectedCategory]);
+
+  const fetchCourses = async (category) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/courses?department=${category}`);
+      setCourses(response.data);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSelect = (event) => {
-    setSelectedCategory(event.target.value); // Update the selected category when dropdown value changes
+    setSelectedCategory(event.target.value); // Update selected category from dropdown
   };
 
   const handleProgramClick = (category) => {
@@ -24,6 +42,12 @@ function Courses() {
   const handleButtonHover = (category) => {
     setHoveredButton(category); // Set the hovered button
   };
+
+  // Filter courses based on the search term
+  const filteredCourses = courses.filter((course) =>
+    course.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    course.department.toLowerCase().includes(selectedCategory.toLowerCase()) // Ensure category matches
+  );
 
   return (
     <div>
@@ -96,58 +120,18 @@ function Courses() {
 
         <div className="searchbody-right">
           {/* Display content based on selected category */}
-          {selectedCategory === 'computing' && (
+          {filteredCourses.length > 0 ? (
             <div className="course-list">
-              <p>Displaying Computing Courses...</p>
               <ul>
-                <li>Higher National Diploma in Digital Filmmaking</li>
-                <li>Higher National Diploma in Network Engineering (Part Time)</li>
-                <li>Higher National Diploma in Software Engineering (Part Time)</li>
-                <li>Higher National Diploma in Network Engineering (Full Time)</li>
-                <li>Higher National Diploma in Information Systems (Full Time)</li>
-                <li>Higher National Diploma in Software Engineering (Full Time)</li>
-                <li>Higher National Diploma in Computer Science with Artificial Intelligence</li>
+                {filteredCourses.map((course) => (
+                  <li key={course._id}>
+                    <p ><strong>Course Name:</strong> {course.name}</p>
+                  </li>
+                ))}
               </ul>
             </div>
-          )}
-          {selectedCategory === 'business' && (
-            <div className="course-list">
-              <p>Displaying Business Courses...</p>
-              <ul>
-                <li>Higher National Diploma in Business Management</li>
-                <li>Higher National Diploma in Marketing</li>
-                <li>Higher National Diploma in Accounting</li>
-                <li>Higher National Diploma in Business Administration</li>
-                <li>Higher National Diploma in Entrepreneurship</li>
-                <li>Higher National Diploma in Human Resource Management</li>
-              </ul>
-            </div>
-          )}
-          {selectedCategory === 'engineering' && (
-            <div className="course-list">
-              <p>Displaying Engineering Courses...</p>
-              <ul>
-                <li>Higher National Diploma in Civil Engineering</li>
-                <li>Higher National Diploma in Mechanical Engineering</li>
-                <li>Higher National Diploma in Electrical Engineering</li>
-                <li>Higher National Diploma in Electronics Engineering</li>
-                <li>Higher National Diploma in Industrial Engineering</li>
-                <li>Higher National Diploma in Chemical Engineering</li>
-              </ul>
-            </div>
-          )}
-          {selectedCategory === 'language' && (
-            <div className="course-list">
-              <p>Displaying Language Courses...</p>
-              <ul>
-                <li>Higher National Diploma in English Language</li>
-                <li>Higher National Diploma in French Language</li>
-                <li>Higher National Diploma in Spanish Language</li>
-                <li>Higher National Diploma in German Language</li>
-                <li>Higher National Diploma in Chinese Language</li>
-                <li>Higher National Diploma in Japanese Language</li>
-              </ul>
-            </div>
+          ) : (
+            <p>No courses available for this category.</p>
           )}
         </div>
       </div>

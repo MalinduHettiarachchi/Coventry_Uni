@@ -11,6 +11,7 @@ import Courses from './Pages/Courses/courses'
 import Ldash from './Pages/Lecturer/LDashboard/ldash'
 import Sdash from './Pages/Student/SDashboard/sdash'
 import WDash from './Pages/Web Admin/WDashboard/wdash';
+//import Get from './get'
 
 function App() {
   return (
