@@ -27,6 +27,7 @@ function StudentRegistration() {
         name: formData.fullName,
         email: formData.email,
         contactNumber: formData.contactNumber,
+        course: course.name,  // Send course name along with other details
       });
       setMessage(response.data.message);
     } catch (error) {

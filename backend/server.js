@@ -265,15 +265,41 @@ app.get('/api/courses/:courseId', async (req, res) => {
 });
 
 
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// Define the Student schema
+const studentSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  contactNumber: String,
+  password: String,
+  course: String,
+  createdAt: { type: Date, default: Date.now },
+});
+
+// Create a model for the "students" collection
+const Student = mongoose.model("Student", studentSchema);
+
+// Route to register a student
 app.post("/api/register-student", async (req, res) => {
-  const { name, email, contactNumber } = req.body;
+  const { name, email, contactNumber, course } = req.body;
 
   // Generate password: first two letters of name + contact number, prefixed with 'S'
   const generatedPassword = `S${name.slice(0, 2)}${contactNumber}`;
 
   try {
-    // Set up nodemailer for sending email
+    // Create a new student entry
+    const newStudent = new Student({
+      name,
+      email,
+      contactNumber,
+      password: generatedPassword,
+      course,  // Store the selected course
+    });
+
+    await newStudent.save(); // Save student data to the "students" collection
+
+    // Set up Nodemailer for email
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -286,7 +312,7 @@ app.post("/api/register-student", async (req, res) => {
       from: "mhssc20@gmail.com",
       to: email,
       subject: "Student Registration Confirmation",
-      text: `Hello ${name},\n\nYour registration is successful!\nYour login password is: ${generatedPassword}\n\nBest regards,\nCoventry Team`,
+      text: `Hello ${name},\n\nYour registration for the course "${course}" is successful!\nYour login password is: ${generatedPassword}\n\nBest regards,\nCoventry Team`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -302,7 +328,6 @@ app.post("/api/register-student", async (req, res) => {
     res.status(500).json({ error: "Failed to register student" });
   }
 });
-
 
 
 
