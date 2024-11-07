@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import './login.css';
-import WDash from '../Web Admin/WDashboard/wdash'; // Assuming WDash is in the same directory, adjust if necessary.
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate(); // Initialize the navigate function
 
   // Function to handle close button click
   const handleClose = () => {
@@ -13,20 +14,35 @@ function Login() {
   };
 
   // Function to handle form submission
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Check if email and password match
-    if (email === 'mhssc20@gmail.com' && password === '123') {
-      setIsAuthenticated(true); // Set authenticated state to true
-    } else {
-      alert('Invalid email or password'); // Display error message if credentials don't match
+
+    // Make API call to check credentials
+    try {
+      const response = await fetch('http://localhost:5000/api/lecturers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsAuthenticated(true); // Successfully authenticated
+        navigate('/le'); // Navigate to the /le route if authenticated
+      } else {
+        alert('Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Something went wrong, please try again.');
     }
   };
-
-  if (isAuthenticated) {
-    // Render the WDash component if authenticated
-    return <WDash />;
-  }
 
   return (
     <div className="login-container">

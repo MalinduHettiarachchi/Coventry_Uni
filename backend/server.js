@@ -368,6 +368,29 @@ app.post("/api/send-lecturer-email", async (req, res) => {
 
 ///////////////////////////////////////////////////
 
+// Route to verify lecturer credentials
+app.post("/api/lecturers", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find lecturer by email and check if the password matches
+    const lecturer = await Lecturer.findOne({ email });
+
+    if (!lecturer) {
+      return res.status(400).json({ success: false, message: "Lecturer not found" });
+    }
+
+    // Check if the password matches
+    if (lecturer.password === password) {
+      res.status(200).json({ success: true, message: "Login successful" });
+    } else {
+      res.status(400).json({ success: false, message: "Invalid password" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
 
 
 
