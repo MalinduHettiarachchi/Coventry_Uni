@@ -1,0 +1,74 @@
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .course-details {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #000000; /* Dark background for course details */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+  
+  .course-details h2 {
+    font-size: 2em;
+    color: #fff; /* White text for headings */
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .course-details p {
+    font-size: 1.2em;
+    color: #ddd; /* Lighter text for paragraph content */
+    margin: 10px 0;
+  }
+  
+  .course-details strong {
+    font-weight: bold;
+    color: #fff; /* White for the strong labels */
+  }
+  
+  .course-details p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .course-details p:not(:last-child) {
+    padding-bottom: 10px;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #aaa; /* Lighter gray text for the loading message */
+    padding: 20px;
+  }
+  .apply-now-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Blue color */
+    color: #000000;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid #ffffff;
+    width: 500px;
+  }
+  
+  .apply-now-btn:hover {
+    background-color: #000000; /* Darker blue on hover */
+    color: rgb(255, 255, 255);
+  }
+  
+  .apply-now-btn:focus {
+    outline: none;
+  }

@@ -11,6 +11,8 @@ import Courses from './Pages/Courses/courses'
 import Ldash from './Pages/Lecturer/LDashboard/ldash'
 import Sdash from './Pages/Student/SDashboard/sdash'
 import WDash from './Pages/Web Admin/WDashboard/wdash';
+import CourseDetails from './Pages/Courses/CourseDetails';
+import Studentregi from './Pages/Courses/StudentRegistration'
 //import Get from './get'
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/le" element={<Ldash />} />
           <Route path="/st" element={<Sdash />} />
           <Route path="/ambassadors" element={<WDash />} />
+          <Route path="/course/:courseId" element={<CourseDetails />} />
+          <Route path="/student-registration" element={<Studentregi />} />
         </Routes>
       </div>
     </Router>

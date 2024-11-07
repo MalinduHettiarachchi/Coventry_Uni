@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import '../Courses/courses.css';
 import Navbar from '../Navbar/navbar';
 import Footer from '../Footer/footer';
@@ -17,10 +18,11 @@ function Courses() {
     }
   }, [selectedCategory]);
 
+  // Function to fetch courses
   const fetchCourses = async (category) => {
     try {
       const response = await axios.get(`http://localhost:5000/api/courses?department=${category}`);
-      setCourses(response.data);
+      setCourses(response.data); // Set the courses state
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
@@ -43,11 +45,12 @@ function Courses() {
     setHoveredButton(category); // Set the hovered button
   };
 
-  // Filter courses based on the search term
-  const filteredCourses = courses.filter((course) =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    course.department.toLowerCase().includes(selectedCategory.toLowerCase()) // Ensure category matches
-  );
+  // Filter courses based on the search term and selected category
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch = course.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = course.department.toLowerCase().includes(selectedCategory.toLowerCase());
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div>
@@ -125,7 +128,9 @@ function Courses() {
               <ul>
                 {filteredCourses.map((course) => (
                   <li key={course._id}>
-                    <p ><strong>Course Name:</strong> {course.name}</p>
+                    <Link to={`/course/${course._id}`} className="course-link">
+                      <p><strong>Course Name:</strong> {course.name}</p>
+                    </Link>
                   </li>
                 ))}
               </ul>
